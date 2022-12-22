@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+
+<head>
+    <title>Neshat Elm Online Examination System</title>
+    <!-- META TAGS -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- FAV ICON(BROWSER TAB ICON) -->
+    <link rel="shortcut icon" href="images/fav.ico" type="image/x-icon">
+    <!-- FONTAWESOME ICONS -->
+    <link rel="stylesheet" href=" {% static 'css/font-awesome.min.css' %}">
+    <!-- ALL CSS FILES -->
+    <link href=" {% static 'css/materialize.css' %}" rel="stylesheet">
+    <link href=" {% static 'css/bootstrap.css' %}" rel="stylesheet" />
+    <link href=" {% static 'css/style.css' %}" rel="stylesheet" />
+    <!-- RESPONSIVE.CSS ONLY FOR MOBILE AND TABLET VIEWS -->
+    <link href=" {% static 'css/style-mob.css' %}" rel="stylesheet" />
+
+</head>
+
+<body>
+    <!--== MAIN CONTRAINER ==-->
+    <div class="container-fluid sb1">
+        <div class="row">
+            <!--== LOGO ==-->
+            <div class="col-md-2 col-sm-3 col-xs-6 sb1-1">
+                <a href="#" class="btn-close-menu"><i class="fa fa-times" aria-hidden="true"></i></a>
+                <a href="#" class="atab-menu"><i class="fa fa-bars tab-menu" aria-hidden="true"></i></a>
+                <a href="/" class="logo"><img src="{% static 'images/logo2.png' %}" alt="" />
+                </a>
+            </div>
+            <!--== SEARCH ==-->
+            <div class="col-md-6 col-sm-6 mob-hide">
+                <!-- <form class="app-search">
+                    <input type="text" placeholder="Search..." class="form-control">
+                    <a href="#"><i class="fa fa-search"></i></a>
+                </form> -->
+            </div>
+            <!--== NOTIFICATION ==-->
+            <div class="col-md-2 tab-hide">
+            </div>
+            <!--== MY ACCCOUNT ==-->
+            <div class="col-md-2 col-sm-3 col-xs-61">
+                <!-- Dropdown Trigger -->
+                <a class='waves-effect dropdown-button top-user-pro' href='#' data-activates='top-menu'><img src="{% static 'images/user/6.png' %}" alt="" />My Account <i class="fa fa-angle-down" aria-hidden="true"></i>
+                </a>
+
+                <!-- Dropdown Structure -->
+                <ul id='top-menu' class='dropdown-content top-menu-sty' style="margin-top: 60px;">
+                    <li><a href="admin-panel-setting.html" class="waves-effect"><i class="fa fa-cogs" aria-hidden="true"></i>Edit Info</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li><a href="/logout" class="ho-dr-con-last waves-effect"><i class="fa fa-sign-in" aria-hidden="true"></i> Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!--== BODY CONTNAINER ==-->
+    <div class="container-fluid sb2">
+        <div class="row">
+            <div class="sb2-1">
+                <!--== USER INFO ==-->
+                <div class="sb2-12">
+                    <br><br>
+                    <ul>
+                        <li style="margin-top: 7px;"><img src="{% static 'image/student.png' %}" alt="">
+                        </li>
+                        <li>
+                            <h5 style="float: left; margin-left: 45px;">{{request.user.first_name}}<span>Student</span></h5>
+                        </li>
+                        <li></li>
+                    </ul>
+                </div>
+                <!--== LEFT MENU ==-->
+                <div class="sb2-13">
+                    <ul class="collapsible" data-collapsible="accordion">
+                        <li><a href="{% url 'student-dashboard' %}" class="menu-active"><i class="fa fa-bar-chart" aria-hidden="true"></i> Dashboard</a>
+                        </li>
+                        <li><a href="{% url 'student-exam' %}" class=""><i class="fa fa-question-circle" aria-hidden="true"></i>Available Exams</a>
+                        </li>
+                        <li><a href="{% url 'view-result' %}" class=""><i class="fa fa-bar-chart" aria-hidden="true"></i>View Marks</a>
+                        </li>
+                        <li><a href="{% url 'contact_admin' %}" class=""><i class="fa fa-phone" aria-hidden="true"></i> Contact Admin</a>
+                        </li>
+                        <li><a href="{% url 'student-see-announcement' %}" class=""><i class="fa fa-bullhorn" aria-hidden="true"></i> Announcements</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+{% block content %}
+
+{% endblock content %}
+    <script src=" {% static 'js/main.min.js' %}"></script>
+    <script src=" {% static 'js/bootstrap.min.js' %}"></script>
+    <script src=" {% static 'js/materialize.min.js' %}"></script>
+    <script src=" {% static 'js/custom.js' %}"></script>
+  </body>
+</html>

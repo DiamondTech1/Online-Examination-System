@@ -1,0 +1,121 @@
+{% extends 'teacher/teacherbase.html' %}
+{% load widget_tweaks %}
+{% load static %}
+{% block content %}
+<style>
+  .label{
+    font-size: 15px;
+    color: black;
+  }
+</style>
+
+<!--== BODY INNER CONTAINER ==-->
+<div class="sb2-2">
+  <!--== breadcrumbs ==-->
+  <div class="sb2-2-2">
+      <ul>
+          <li><a href="{% url 'teacher-dashboard' %}"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
+          </li>
+          <li class="active-bre"><a href="#"> Questions Section / Add MC Question</a>
+          </li>
+          <li class="page-back"><a href="{% url 'teacher-dashboard' %}"><i class="fa fa-backward" aria-hidden="true"></i> Back</a>
+          </li>
+      </ul>
+  </div>
+
+  <!--== User Details ==-->
+
+<div class="sb2-2-3">
+  <div class="row">
+      <div class="col-md-12">
+          <div class="box-inn-sp admin-form">
+              <div class="inn-title">
+                  <h4>Add New Questions Here</h4>
+              </div>
+              <div class="tab-inn">
+                  <form method="post"  autocomplete="off" enctype="multipart/form-data">
+                    {% csrf_token %}
+                      <div class="row">
+                        <label class="label">Exam Name</label>
+                          <div class="input-field col s12">
+                            {% render_field questionFormMC.examID|attr:'required:true' class="validate"  %}
+                            <!-- <label class="">Exam Name</label> -->
+                          </div>
+                      </div>
+                      <div class="row">
+                        <label class="label">Question</label>
+                          <div class="input-field col s12">
+                            {% render_field questionFormMC.question|attr:'required:true' class="validate" placeholder="Example: Which one of the following is not a phase of Prototyping Model?" %}
+                            <!-- <label class="">Total Question</label> -->
+                          </div>
+                      </div>
+                      <div class="row">
+                        <div class="input-field col s6">
+                          <label class="label" style="margin-top:-20px; margin-left: -17px; color: black;">Option1</label>  
+                        </div>
+                        
+                        <div class="input-field col s6">
+                          <label class="label" style="margin-top:-20px; margin-left: -17px; color: black;">Option2</label>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="input-field col s6">
+                          {% render_field questionFormMC.option1|attr:'required:true' class="validate" placeholder="Example: Quick Design" %}
+                        </div>
+                        
+                        <div class="input-field col s6">
+                          {% render_field questionFormMC.option2|attr:'required:true' class="validate" placeholder="Example: Coding" %}
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="input-field col s6">
+                          <label class="label" style="margin-top:-20px; margin-left: -17px; color: black;">Option3</label>  
+                        </div>
+                        
+                        <div class="input-field col s6">
+                          <label class="label" style="margin-top:-20px; margin-left: -17px; color: black;">Option4</label>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="input-field col s6">
+                          {% render_field questionFormMC.option3|attr:'required:true' class="validate" placeholder="Example: Quick Design" %}
+                        </div>
+                        
+                        <div class="input-field col s6">
+                          {% render_field questionFormMC.option4|attr:'required:true' class="validate" placeholder="Example: Coding" %}
+                        </div>
+                        <div class="row">
+                          <div class="input-field col s6">
+                            <label class="label" style="margin-top:-20px; margin-left: 0px; color: black;">Correct Answer</label>  
+                          </div>
+                          
+                          <div class="input-field col s6">
+                            <label class="label" style="margin-top:-20px; margin-left: -17px; color: black;">Marks</label>
+                          </div>
+                        </div>
+                      <div class="row"></div> 
+                        <div class="input-field col s6">
+                          {% render_field questionFormMC.answer|attr:'required:true' class="validate" %}
+                          <!-- <label class="">Subject</label> -->
+                        </div>
+                        <div class="input-field col s6">
+                          {% render_field questionFormMC.marks|attr:'required:true' class="validate" placeholder="Example: 5" %}
+                          <!-- <label class="">Class</label> -->
+                        </div>
+                        </div>
+                      
+                      <div class="row">
+                          <div class="input-field col s12">
+                              <i class="waves-effect waves-light btn-large waves-input-wrapper"><input type="submit" value ="Add" class="waves-button-input"></i>
+                          </div>
+                      </div>
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+{% endblock content %}
+
+

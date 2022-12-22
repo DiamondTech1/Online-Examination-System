@@ -1,0 +1,69 @@
+
+
+
+
+{% extends 'student/studentbase.html' %}
+{% block content %}
+{%load static%}
+
+    <!--== BODY INNER CONTAINER ==-->
+    <div class="sb2-2">
+      <!--== breadcrumbs ==-->
+      <div class="sb2-2-2">
+          <ul>
+              <li><a href="{% url 'student-dashboard' %}"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
+              </li>
+              <li class="active-bre"><a href="#"> Available Exams</a>
+              </li>
+              <li class="page-back"><a href="{% url 'student-dashboard' %}"><i class="fa fa-backward" aria-hidden="true"></i> Back</a>
+              </li>
+          </ul>
+      </div>
+  
+      <!--== User Details ==-->
+    <div class="sb2-2-3">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box-inn-sp">
+                    <div class="inn-title">
+                        <h4>Available Exams</h4>
+                    </div>
+                    <div class="tab-inn">
+                        <div class="table-responsive table-desi">
+                          <table class="table table-hover table-bordered" id="dev-table">
+                            <thead>
+                              <tr>
+                      
+                                <th>Exam</th>
+                                <th>Total Marks</th>
+                                <th>Number of Attempts</th>
+                                <th>Exam Date</th>
+                              </tr>
+                            </thead>
+                            {% for t in results %}
+                            <tr>
+                      
+                              <td> {{t.exam}}</td>
+                              <td> {{t.marks}}</td>
+                              <td>Attempt {{ forloop.counter }}</td>
+                              <td> {{t.date}}</td>
+                              
+                              
+                            </tr>
+                            {% endfor %}
+                          </table>                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+{% endblock content %}
+
+
+
+
+
+
+
+

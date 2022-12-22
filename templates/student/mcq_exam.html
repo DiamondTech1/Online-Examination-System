@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+
+{% load static %}
+
+<head>
+
+    <style>
+        body {
+            background-image: url("{% static 'images/slider/3.jpg' %}");
+            background-size: cover;
+        }
+
+        .exam-form {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            min-width: 800px;
+            min-height: 450px;
+            max-width: 800px;
+            border-radius: 20px;
+            background-color: white;
+            padding: 40px;
+        }
+
+        .btn {
+
+            padding: 5px 20px;
+            background-color: #002147;
+            border-color: lightgray;
+            border-radius: 30px;
+            color: white;
+            font-size: 20px;
+            float: right;
+            position: absolute;
+            right: 39px;
+            bottom: 35px;
+
+        }
+
+
+        .exam {
+            text-align: center;
+            background-color: #002147;
+            color: white;
+            border-radius: 20px;
+            border-bottom: 2px solid rgb(167, 162, 162);
+            border-right: 1px solid rgb(167, 162, 162);
+        }
+
+        .rbtn {
+            margin-bottom: 10px;
+
+        }
+
+        .ml-3 {
+            font-size: 18px;
+        }
+
+        .note {
+            margin-left: 20px;
+        }
+
+        .full-question {
+            margin-left: 10px;
+        }
+        #quiz-time-left{
+            float: right;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="contianer">
+        <div class="exam-form">
+            <form class="form" autocomplete="off" action="{% url 'tfq-exam' exam.id %}" id="sub" method="POST">
+                <h2 class="exam">Exam: {{exam.exam_name}}</h2>
+                <div id='quiz-time-left'></div>
+                {% if mcq %}
+                {% for q in mcq %}
+                <div class="full-question">
+                    <h4>Multi Choice Questions</h4>
+
+                    <div class="">
+                        <div class="" style="overflow-wrap: break-word; ">
+                            <h3 class="question">{{ mcq.start_index|add:forloop.counter0 }}. {{q.question}}</h3>
+                        </div>
+                        <div class="col-auto">
+                            <h4 style="text-align: right; color:red; margin-right: 10px;">[{{q.marks}} Marks]</h4>
+                        </div>
+                    </div>
+                    <div class="form-check mx-4 d-flex align-items-center">
+                        <input class="rbtn" type="radio" name="{{ mcq.start_index|add:forloop.counter0 }}"
+                            value="Option1">
+                        <label class="form-check-label ml-3" for="option1">
+                            {{q.option1}}
+                        </label>
+                    </div>
+
+
+                    <div class="form-check mx-4 d-flex align-items-center">
+                        <input class="rbtn" type="radio" name="{{ mcq.start_index|add:forloop.counter0 }}" id="r"
+                            value="Option2">
+                        <label class="form-check-label ml-3" for="option2">
+                            {{q.option2}}
+                        </label>
+                    </div>
+
+
+                    <div class="form-check mx-4 d-flex align-items-center">
+                        <input class="rbtn" type="radio" name="{{ mcq.start_index|add:forloop.counter0 }}" id="r"
+                            value="Option3">
+                        <label class="form-check-label ml-3" for="option3">
+                            {{q.option3}}
+                        </label>
+                    </div>
+
+
+                    <div class="form-check mx-4 d-flex align-items-center">
+                        <input class="rbtn" type="radio" name="{{ mcq.start_index|add:forloop.counter0 }}" id="r"
+                            value="Option4">
+                        <label class="form-check-label ml-3" for="option4">
+                            {{q.option4}}
+                        </label>
+                    </div>
+                </div>
+            </form>
+            {% endfor %}
+            <div class="paginator">
+                <div class="form-group">
+                    {% if mcq.has_next %}
+
+                    <a href="?page={{ mcq.next_page_number }}"><button class="btn" onclick="saveAns()"
+                            id="next">Next</button></a>
+                    {% else %}
+                    <button class="btn" onclick="saveAns()" form="sub" type="submit">Next</button>
+                    {% endif %}
+                </div>
+            </div>
+            {% else %}
+            <h2 class="note">Oops!</h2>
+            <h3 class="note">Seems like you don't have any multi-choice quesion.</h3>
+            <h3 class="note">Click on "Submit" to see Ture/False questions.</h3>
+            <button class="btn" onclick="saveAns()" form="sub" type="submit">Next</button>
+            {% endif %}
+        </div>
+    </div>
+
+
+    <script type="text/javascript">
+        function saveAns() {
+
+            var ele = document.getElementsByTagName('input');
+            for (i = 0; i < ele.length; i++) {
+
+                if (ele[i].type = "radio") {
+                    if (ele[i].checked) {
+                        setCookie(ele[i].name, ele[i].value, 3)
+                    }
+                }
+            }
+        }
+
+
+        function setCookie(cname, cvalue, exdays) {
+            var d = new Date();
+            d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+            var expires = "expires=" + d.toUTCString();
+            document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+        }
+
+        function getCookie(name) {
+            function escape(s) { return s.replace(/([.*+?\^$(){}|\[\]\/\\])/g, '\\$1'); }
+            var match = document.cookie.match(RegExp('(?:^|;\\s*)' + escape(name) + '=([^;]*)'));
+            return match ? match[1] : null;
+        }        
+
+
+        var time = parseInt(getCookie('timer')); // This is the time given for exam
+        var saved_countdown = localStorage.getItem('saved_countdown');
+
+        if(saved_countdown == null) {
+            // Set the time we're counting down to using the time allowed
+            var new_countdown = new Date().getTime() + (time + 2) * 1000;
+            time = new_countdown;
+            localStorage.setItem('saved_countdown', new_countdown);
+        } else {
+            time = saved_countdown;
+        }
+
+        // Update the count down every 1 second
+        var x = setInterval(() => {
+
+            // Get today's date and time
+            var now = new Date().getTime();
+
+            // Find the distance between now and the allowed time
+            var distance = time - now;
+
+            // Time counter
+            var timer = parseInt(distance /1000);
+            var counter =timer--;
+
+            var minutes = parseInt(timer/60);
+            var seconds= parseInt(timer%60);
+
+            // Output the result in an element with id="demo"
+            document.getElementById("quiz-time-left").innerHTML = 'Time Left: ' + minutes + 'min ' + seconds + 'sec';
+                
+            // If the count down is over, write some text 
+            if (counter <= 0) {
+                clearInterval(x);
+                localStorage.removeItem('saved_countdown');
+                // location.href = "/student/calculate-marks";
+
+            }
+        }, 1);
+
+
+    </script>
+
+</body>
+
+</html>

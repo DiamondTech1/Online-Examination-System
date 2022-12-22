@@ -1,0 +1,72 @@
+{% extends 'teacher/teacherbase.html' %}
+{% block content %}
+{%load static%}
+
+    <!--== BODY INNER CONTAINER ==-->
+    <div class="sb2-2">
+      <!--== breadcrumbs ==-->
+      <div class="sb2-2-2">
+          <ul>
+              <li><a href="{% url 'teacher-dashboard' %}"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
+              </li>
+              <li class="active-bre"><a href="#"> Exams Section / Active Exams</a>
+              </li>
+              <li class="page-back"><a href="{% url 'teacher-dashboard' %}"><i class="fa fa-backward" aria-hidden="true"></i> Back</a>
+              </li>
+          </ul>
+      </div>
+  
+      <!--== User Details ==-->
+    <div class="sb2-2-3">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box-inn-sp">
+                    <div class="inn-title">
+                        <h4>Active Exams</h4>
+                    </div>
+                    <div class="tab-inn">
+                        <div class="table-responsive table-desi">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                      <th>Exam</th>
+                                      <th>Subject</th>
+                                      <th>Class</th>
+                                      <th>Total Marks</th>
+                                      <th>Duration Time</th>
+                                      <th>Hide Exam</th>
+                                      <th>view Questions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                  {% for t in exams %}
+                                    <tr>
+  
+                                      <td> {{t.exam_name}}</td>
+                                      <td> {{t.subject}}</td>
+                                      <td>{{t.class_id}}</td>
+                                      <td>{{t.total_marks}}</td>
+                                      <td>{{t.timmer}} mins</td>
+                                      <td  style='text-align: center;'><a class="btn btn-primary" style="margin-right: 40px;" href="{% url 'make-exam-invisiable' t.id  %}"><span class="fa fa-eye-slash" style="color: white; font-size: 19px;"></span></a></td>
+                                      </td>                                            
+                                      <td  style='text-align: center;'><a class="btn btn-primary" style="margin-right: 40px;" href="{% url 'see-question' t.id  %}"><span class="fa fa-question-circle" style="color: white; font-size: 19px;"></span></a></td>
+                                      </td>                                            
+                                   </tr>
+                                  {% endfor %}                                            
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+{% endblock content %}
+
+
+
+
+
+
+

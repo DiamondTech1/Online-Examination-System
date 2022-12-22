@@ -1,0 +1,135 @@
+{% extends 'student/studentbase.html' %}
+{% load widget_tweaks %}
+{% block content %}
+<!--== BODY INNER CONTAINER ==-->
+<div class="sb2-2">
+  <!--== breadcrumbs ==-->
+  <div class="sb2-2-2">
+      <ul>
+          <li><a href="{% url 'student-dashboard' %}"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
+          </li>
+          <li class="active-bre"><a href="#">edit account</a>
+          </li>
+          <li class="page-back"><a href="{% url 'student-dashboard' %}"><i class="fa fa-backward" aria-hidden="true"></i> Back</a>
+          </li>
+      </ul>
+  </div>
+
+  <!--== User Details ==-->
+
+<div class="sb2-2-3">
+  <div class="row">
+      <div class="col-md-12">
+          <div class="box-inn-sp admin-form">
+              <div class="inn-title">
+                  <h4>Edit account Information</h4>
+              </div>
+              <div class="tab-inn">
+                <form method="post"  autocomplete="off" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="input-field col s6">
+                          <label class="label" style="margin-top:-20px; margin-left: -17px; color: black;">First Name</label>  
+                        </div>
+                        
+                        <div class="input-field col s6">
+                          <label class="label" style="margin-top:-20px; margin-left: -17px; color: black;">Last Name</label>
+                        </div>
+                      </div>
+                      <div class="row">
+                          <div class="input-field col s6">
+                              {% render_field userForm.first_name|attr:'required:true' class="validate" %}
+                              <label class="">First name</label>
+                          </div>
+                          <div class="input-field col s6">
+                              {% render_field userForm.last_name|attr:'required:true' class="validate" %}
+                              <label class="">Last name</label>
+                          </div>
+                      </div>
+                      <div class="row">
+                        <div class="input-field col s6">
+                          <label class="label" style="margin-top:-20px; margin-left: -17px; color: black;">User Name</label>  
+                        </div>
+                        
+                        <div class="input-field col s6">
+                          <label class="label" style="margin-top:-20px; margin-left: -17px; color: black;">Class</label>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="input-field col s6">
+                              {% render_field userForm.username|attr:'required:true'  class="validate" %}
+                              <label class="">Username</label>
+                        </div>
+                        <div class="input-field col s6">
+                            {% render_field studentForm.classID|attr:'required:true'  class="validate" %}
+                            <!-- <label class="">Department</label> -->
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                          <label class="label" style="margin-top:-20px; margin-left: -17px; color: black;">Phone</label>  
+                        </div>
+                      </div>
+                      <div class="row">
+                          <div class="input-field col s12">
+                              {% render_field studentForm.phone_number|attr:'required:true'  class="validate" %}
+                              <label class="">Phone number</label>
+                          </div>
+                      </div>
+                      <div class="row">
+                        <div class="input-field col s6">
+                          <label class="label" style="margin-top:-20px; margin-left: -17px; color: black;">Email</label>  
+                        </div>
+                      </div>
+                      <div class="row">
+                          <div class="input-field col s12">
+                              {% render_field userForm.email|attr:'required:true' class="validate" %}
+                              <label class="">Email is</label>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="input-field col s12">
+                              <!-- <input type="text" value="" class="validate">
+                              <label>Student id</label> -->
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="file-field input-field col s12">
+                            <div class="btn admin-upload-btn">
+                              <span>File</span>
+                              <input type="file">
+                            </div>
+                          <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text" placeholder="Profile image">
+                            {% render_field studentForm.profile_pic|attr:'required:true' class="validate" %}
+                          </div>
+                        </div>
+                      </div> 
+                      <div class="row">
+                          <div class="input-field col s12">
+                              <i class="waves-effect waves-light btn-large waves-input-wrapper"><input type="submit" class="waves-button-input"></i>
+                          </div>
+                      </div>
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

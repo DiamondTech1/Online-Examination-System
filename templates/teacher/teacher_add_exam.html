@@ -1,0 +1,98 @@
+{% extends 'teacher/teacherbase.html' %}
+{% load widget_tweaks %}
+{% load static %}
+{% block content %}
+<!--== BODY INNER CONTAINER ==-->
+<div class="sb2-2">
+  <!--== breadcrumbs ==-->
+  <div class="sb2-2-2">
+      <ul>
+          <li><a href="{% url 'teacher-dashboard' %}"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
+          </li>
+          <li class="active-bre"><a href="#"> Exam / Add new Exam</a>
+          </li>
+          <li class="page-back"><a href="{% url 'teacher-dashboard' %}"><i class="fa fa-backward" aria-hidden="true"></i> Back</a>
+          </li>
+      </ul>
+  </div>
+
+  <!--== User Details ==-->
+
+<div class="sb2-2-3">
+  <div class="row">
+      <div class="col-md-12">
+          <div class="box-inn-sp admin-form">
+              <div class="inn-title">
+                  <h4>Add New Exam Informations</h4>
+              </div>
+              <div class="tab-inn">
+                  <form method="post"  autocomplete="off" enctype="multipart/form-data">
+                    {% csrf_token %}
+                      <div class="row">
+                        <div class="input-field col s6">
+                          <label class="label" style="margin-top:-20px; margin-left: -17px; color: black;">Exam</label>  
+                        </div>
+                        
+                        <div class="input-field col s6">
+                          <label class="label" style="margin-top:-20px; margin-left: -17px; color: black;">Number Of Questions</label>
+                        </div>
+                      </div>
+                      <div class="row">
+                          <div class="input-field col s6">
+                              {% render_field examForm.exam_name|attr:'required:true' class="validate" %}
+                              <label class="">Exam Name</label>
+                          </div>
+                          <div class="input-field col s6">
+                              {% render_field examForm.question_number|attr:'required:true' class="validate" %}
+                              <label class="">Total Question</label>
+                          </div>
+                      </div>
+                      <div class="row" style="margin-top: 10px; margin-bottom: 5px;">
+                        <div class="input-field col s6">
+                          <label class="label" style="margin-top:-20px; margin-left: -17px; color: black;">Subject</label>  
+                        </div>
+                        
+                        <div class="input-field col s6">
+                          <label class="label" style="margin-top:-20px; margin-left: -17px; color: black;">Class</label>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="input-field col s6">
+                              {% render_field examForm.subjectID|attr:'required:true'  class="validate" %}
+                              <!-- <label class="">Subject</label> -->
+                        </div>
+                        <div class="input-field col s6">
+                              {% render_field examForm.classID|attr:'required:true'  class="validate" %}
+                              <!-- <label class="">Class</label> -->
+                        </div>
+                      </div>
+                      <div class="row" style="margin-top: 13px; margin-bottom: 5px; padding: 0 15px;">
+                        <div class="input-field col s12">
+                          <label class="label" style="margin-top:-20px; margin-left: -34px; color: black;">Exam Duration (in minutes)</label>  
+                        </div>
+                      <div class="row">
+                          <div class="input-field col s12">
+                              {% render_field examForm.timmer|attr:'required:true' class="validate" %}
+                              <!-- <label class="">End Date</label> -->
+                          </div>
+                      </div>
+                      <div class="row" >
+                          <p style="margin-top: 0px; margin-bottom: -2px; margin-left: 13px; color: black; font-weight: bold;">Marks</p>
+                          <div class="input-field col s12">
+                              {% render_field examForm.total_marks|attr:'required:true' class="validate" %}
+                              <label class="">Total Marks</label>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="input-field col s12">
+                              <i class="waves-effect waves-light btn-large waves-input-wrapper"><input type="submit" class="waves-button-input"></i>
+                          </div>
+                      </div>
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+{% endblock content %}

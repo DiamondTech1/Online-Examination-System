@@ -1,0 +1,135 @@
+{% extends 'teacher/teacherbase.html' %}
+{% load widget_tweaks %}
+{% load static %}
+{% block content %}
+
+<div class="sb2-2">
+  <!--== breadcrumbs ==-->
+  <div class="sb2-2-2">
+      <ul>
+          <li><a href="index-2.html"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
+          </li>
+      </ul>
+  </div>
+  <!--== DASHBOARD INFO ==-->
+  <div class="sb2-2-1">
+      <h2>Dashboard</h2>
+      <p>This is The overall information!</p>
+      <div class="db-2">
+          <ul>
+              <li>
+                  <div class="dash-book dash-b-1">
+                      <h5>All Exams</h5>
+                      <h4>{{total_exam}}</h4>
+                      <a href="#">View more</a>
+                  </div>
+              </li>
+              <li>
+                  <div class="dash-book dash-b-2">
+                      <h5>Quesitons</h5>
+                      <h4>{{total_question}}</h4>
+                      <a href="#">View more</a>
+                  </div>
+              </li>
+              <li>
+                  <div class="dash-book dash-b-3">
+                      <h5>Students</h5>
+                      <h4>{{total_student}}</h4>
+                      <a href="#">View more</a>
+                  </div>
+              </li>
+              <!-- <li>
+                  <div class="dash-book dash-b-4">
+                      <h5>Exam Attended</h5>
+                      <h4>{{total_exam}}</h4>
+                      <a href="#">View more</a>
+                  </div>
+              </li> -->
+          </ul>
+      </div>
+  </div>
+
+      <!--== Students Details ==-->
+      <div class="sb2-2-3">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box-inn-sp">
+                    <div class="inn-title">
+                        <h4>Exams Details</h4>
+                    </div>
+                    <div class="tab-inn">
+                        <div class="table-responsive table-desi">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                      <th>Name</th>
+                                      <th>Photo</th>
+                                      <th>Department</th>
+                                      <th>Email Address</th>
+                                      <th>UserName</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                  {% for t in students %}
+                                    <tr>
+  
+                                      <td><span class="list-enq-name">{{t.get_name}}</span></td>
+                                      <td> <img src="{% static t.profile_pic.url %}" alt="Profile Pic" height="40px" width="40px" /></td>
+                                      <td>{{t.department}}</td>
+                                      <td>{{t.email_address}}</td>  
+                                      <td>{{t.user}}</td>                                            
+                                   </tr>
+                                  {% endfor %}                                            
+                                </tbody>
+                            </table>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+      <!--== Teachers Details ==-->
+  <div class="sb2-2">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box-inn-sp">
+                <div class="inn-title">
+                    <h4>Hidden Exams</h4>
+                </div>
+                <div class="tab-inn">
+                    <div class="table-responsive table-desi">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                  <th>Name</th>
+                                  <th>Photo</th>
+                                  <th>Department</th>
+                                  <th>Email Address</th>
+                                  <th>UserName</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                              {% for t in teachers %}
+                                <tr>
+
+                                  <td><span class="list-enq-name">{{t.get_name}}</span></td>
+                                  <td> <img src="{% static t.profile_pic.url %}" alt="Profile Pic" height="40px" width="40px" /></td>
+                                  <td>{{t.department}}</td>
+                                  <td>{{t.email_address}}</td>  
+                                  <td>{{t.user}}</td>                                            
+                                </tr>
+                              {% endfor %}                                            
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+{% endblock content %}

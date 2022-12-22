@@ -1,0 +1,110 @@
+{% extends 'student/studentbase.html' %}
+{% block content %}
+{%load static%}
+
+<style>
+    .sb2-12,
+    .sb2-13{
+        display: none;
+    }
+    .sb2{
+        margin-left: -340px;
+    }
+    .sb2-2,
+    body{
+        background-image: url("{% static 'images/clock.jpg' %}");
+        background-size:cover;
+    }
+    .btn:hover{
+        background: orangered;
+    }
+    .btn{
+        background-color: rgb(216, 79, 29);
+         border-radius:30px;
+    }
+    /* .inn-title{
+        background-color: brown;
+    }
+
+    .sb1{
+        background-color:orange;
+    } */
+</style>
+    <!--== BODY INNER CONTAINER ==-->
+    <div class="sb2-2">
+      <!--== breadcrumbs ==-->
+      <div class="sb2-2-2">
+       
+      </div>
+  
+      <!--== User Details ==-->
+    <div class="sb2-2-3">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box-inn-sp" style="border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
+                   <div class="card border-primary mx-4 my-4" style="border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; border-top-left-radius: 10px; border-top-right-radius: 10px;">
+                    <div class="inn-title" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
+                        <h4>Exam Details</h4>
+                    </div>
+                    <div class="tab-inn">
+                        <div class="table-responsive table-desi">
+                            
+                                <div class="card-body text-default">
+                                                   
+                                            <ul style="list-style:decimal;">
+                                                <li><span style="font-weight: bold;">Exam :</span> {{exam.exam_name}}</li>
+                                                <li><span style="font-weight: bold;">Total Question :</span> {{total_questions}}</li>
+                                                <li><span style="font-weight: bold;">Total Marks :</span> {{total_marks}}</li>
+                                                <li><span style="font-weight: bold;">Exam Duration :</span> {{time}}</li>
+                                            </ul>
+                                    <p></p>
+                
+                
+                
+                                    <h4 class="card-title">You may see three types of Questions:</h4>
+                                    <p class="card-text"></p>
+                                    <div style=" display: inline; float: left;">
+                                        <ul style="list-style:decimal;">
+                                            <li style="font-weight: bold;">MCQ (multiple choice question)</li>
+                                            <li>You will be given a Question with four Choices</li>
+                                            <li><span class="text-danger" style="color:rgb(216, 79, 29)">Only one choice is correct among the given.</span></li>
+                                        </ul>
+                                    </div>
+                                    <div style="display: inline; float: right;">
+                                        <ul style="list-style:decimal;">
+                                            <li style="font-weight: bold;">TFQ (True/False question)</li>
+                                            <li>You will be given a statement</li>
+                                            <li>You have to select whether its True of False</li>
+                                            <li><span class="text-danger" style="color:rgb(216, 79, 29)">Only select True or False</span></li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <ul style="list-style:decimal; text-align: center;">
+                                            <li style="font-weight: bold;">GFQ (Gap Filling question)</li>
+                                            <li>You will be given a statement with a gap</li>
+                                            <li><span class="text-danger" style="color:rgb(216, 79, 29)">fill in the gap with correct word(s)</span></li>
+                                        </ul>
+                                    </div>
+                                    <div style="margin-top: 20px;">   
+                                        <ul> 
+                                            <li style="font-weight: bold; display: block;">Rules:</li>
+                                            <li>If you PRESS go back to the previous page, the question you were on will be counted as number of attempts.</li>
+                                            <li>Don't click on refresh button, It won't help you by any chance.</li>
+                                            <li>You will be able to view marks immediately once after you submit the answers.</li>
+                                        </ul>
+                                    </div>
+                                    <p></p>
+                                    <div class="card-footer">Best Of Luck, Students!</div> <br>
+                                    <a href="{% url 'mcq-exam' exam.id  %}" class="btn btn-danger">Start Examination</a>
+                                </div>  
+                                 
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+{% endblock content %}
+

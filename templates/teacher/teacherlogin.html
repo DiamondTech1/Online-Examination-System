@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+{% load widget_tweaks %}
+{% load static %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="{% static 'style/login-style.css' %}" />
+    
+    <style media="screen">
+         body {
+            background-image: url("{% static 'image/shelf1.jpg' %}");
+            background-size: cover;
+        }
+  
+    </style>
+  </head>
+  <body>
+    {% include "exam/navbar.html" %}
+    <div class="container">
+        <form class="box" method="post">
+            {% csrf_token %}
+            <h1>Login</h1>
+            <p> Please enter your username and password!</p>
+            {% render_field form.username class="form-control" autocomplete="off" placeholder="Username" %}
+            {% render_field form.password class="form-control" autocomplete="off" placeholder="Password" %}
+
+            {% if form.errors %}
+            <p style="color: yellow; margin-top: -10px; margin-bottom:-10px; font-size: 18px;">username or password is incorrect</p>
+            {% endif %}
+
+            <input type="submit" name="" value="Login">
+            <p>Forgot your username or password: <a href="{% url 'contact_admin' %}">Contact the Admin</a></p>
+        </form>
+    </div>
+
+<!-- for background animation -->
+<script>
+    window.onload= function() {
+        var particles = Particles.init({
+	        selector: '.background',
+            color: 'orange'
+        });
+    };
+  </script>
+  <canvas class="background"></canvas>
+  <script src="{% static 'scripts/particles.js-master/dist/particles.min.js' %}"></script>
+  </body>
+</html>

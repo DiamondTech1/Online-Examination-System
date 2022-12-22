@@ -1,0 +1,73 @@
+{% extends 'teacher/teacherbase.html' %}
+{% load widget_tweaks %}
+{% load static %}
+{% block content %}
+<style>
+  .label{
+    font-size: 15px;
+    color: black;
+  }
+  .description{
+    height: 300px;
+    min-height: 300px;
+  }
+
+</style>
+
+<!--== BODY INNER CONTAINER ==-->
+<div class="sb2-2">
+  <!--== breadcrumbs ==-->
+  <div class="sb2-2-2">
+      <ul>
+          <li><a href="{% url 'teacher-dashboard' %}"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
+          </li>
+          <li class="active-bre"><a href="#"> Annoucements / create_annoucement</a>
+          </li>
+          <li class="page-back"><a href="{% url 'teacher-dashboard' %}"><i class="fa fa-backward" aria-hidden="true"></i> Back</a>
+          </li>
+      </ul>
+  </div>
+
+  <!--== User Details ==-->
+
+<div class="sb2-2-3">
+  <div class="row">
+      <div class="col-md-12">
+          <div class="box-inn-sp admin-form">
+              <div class="inn-title">
+                  <h4>Create New Announcement</h4>
+              </div>
+              <div class="tab-inn">
+                  <form method="post"  autocomplete="off" enctype="multipart/form-data">
+                    {% csrf_token %}
+                      <div class="row">
+                        <label class="label">Title</label>
+                          <div class="input-field col s12">
+                              {% render_field announcement_form.title|attr:'required:true' class="validate"  %}
+                              <label class="">Annoucement Title</label>
+                          </div>
+                      </div>
+                      <div class="row">
+                        <label class="label">Description</label>
+                          <div class="input-field col s12">
+                              {% render_field announcement_form.description|attr:'required:true' class="validate description"  %}
+                              <label class="">Description</label>
+                          </div>
+                      </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <i class="waves-effect waves-light btn-large waves-input-wrapper"><input type="submit" value ="Add" class="waves-button-input"></i>
+                            </div>
+                        </div>
+                      </div>
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+{% endblock content %}
+
+
+

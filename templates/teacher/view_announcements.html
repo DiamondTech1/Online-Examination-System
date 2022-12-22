@@ -1,0 +1,68 @@
+{% extends 'teacher/teacherbase.html' %}
+{% load widget_tweaks %}
+{% load static %}
+{% block content %}
+<style>
+  .label{
+    font-size: 15px;
+    color: black;
+  }
+  .msg_box{
+    border: 1px solid ;
+    border-radius: 10px;
+    padding: 10px;
+    padding-top: 0px;
+    margin: 10px;
+    color: white;
+    background-color: #002147;
+  }
+  .box1{
+    border: 1px solid #002147;
+  }
+
+</style>  
+
+<!--== BODY INNER CONTAINER ==-->
+<div class="sb2-2">
+  <!--== breadcrumbs ==-->
+  <div class="sb2-2-2">
+      <ul>
+          <li><a href="{% url 'teacher-dashboard' %}"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
+          </li>
+          <li class="active-bre"><a href="#"> Annoucements / create_annoucement</a>
+          </li>
+          <li class="page-back"><a href="{% url 'teacher-dashboard' %}"><i class="fa fa-backward" aria-hidden="true"></i> Back</a>
+          </li>
+      </ul>
+  </div>
+
+  <!--== User Details ==-->
+
+<div class="sb2-2-3">
+  <div class="row">
+      <div class="col-md-12">
+          <div class="box-inn-sp admin-form">
+              <div class="inn-title">
+                  <h4>Announcements</h4>
+              </div>
+              <div class="tab-inn">
+                <div class="box1">
+                  {% for msg in announcements %}
+                    <div class="msg_box">
+                        <h3 style="font-weight: bold;">{{msg.title}}</h3>
+                        <h6>{{msg.get_name}}</h6>
+                        <h6>{{msg.date}}</h6>
+                        <h4>{{msg.description}}</h4>
+                    </div>
+                  {% endfor %}
+                </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+{% endblock content %}
+
+
+
