@@ -1,0 +1,227 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Gill Sans", sans-serif;
+  }
+  :root{
+    --blue: #287bff;
+    --white: #fff;
+    --grey: #f5f5f5;
+    --black1: #222;
+    --black2: #999;
+  }
+  body{
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  .cont{
+    position: relative;
+    width: 100%;
+  }
+  .navigation .profile_image {
+    width: 100px;
+    height: 100px;
+    border-radius: 100px;
+    margin-top: 50px;
+    margin-left: -20px;
+    margin-bottom: 5px;
+  }
+  
+  .navigation h4 {
+    color: #f3f3f3;
+    margin-top: 0;
+    margin-left: -20px;
+    margin-bottom: 30px;
+  }
+  
+  .navigation{
+    position: fixed;
+    width: 250px;
+    height: 100%;
+    background: var(--blue);
+    border-left: 10px solid var(--blue);
+    transition: 0.5s;
+    overflow: hidden;
+  }
+  .navigation.active{
+    width: 75px;
+  }
+  .navigation .admin-image.active{
+    display: none;
+  }
+  .navigation ul{
+    margin-top: 210px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    }
+  .navigation ul li{
+    position: relative;
+    width: 100%;
+    list-style: none;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+  }
+  .navigation ul li:hover,
+  .navigation ul li.hovered{
+    background: var(--white);
+  }
+  .navigation ul li a{
+    position: relative;
+    display: block;
+    width: 100%;
+    display: flex;
+    text-decoration: none;
+    color: var(--white);
+  }
+  .navigation ul li:hover a,
+  .navigation ul li.hovered a{
+    color: var(--blue);
+  }
+  .navigation ul li a .icon{
+    position: relative;
+    display: block;
+    font-size: 20px;
+    min-width: 60px;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+  }
+  
+  .navigation ul li a .title{
+    position: relative;
+    display: block;
+    padding: 0 10px;
+    height: 60px;
+    line-height: 60px;
+    text-align: start;
+    white-space: nowrap;
+  }
+  
+  .navigation ul li:hover a::before,
+  .navigation ul li.hovered a::before{
+    content: '';
+    position: absolute;
+    right: 0;
+    top: -50px;
+    width: 50px;
+    height: 50px;
+    background: transparent;
+    border-radius: 50%;
+    box-shadow: 35px 35px 0 10px var(--white);
+    pointer-events: none;
+  }
+  .navigation ul li:hover a::after,
+  .navigation ul li.hovered a::after{
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: -50px;
+    width: 50px;
+    height: 50px;
+    background: transparent;
+    border-radius: 50%;
+    box-shadow: 35px -35px 0 10px var(--white);
+    pointer-events: none;
+  }
+      /* main */
+  .main{
+    position:absolute;
+    width: calc(100% - 250px);
+    left: 250px;
+    min-height: 100vh;
+    background: var(--white);
+    transition: 0.5s;
+  }
+  .main.active{
+    width: calc(100% - 70px);
+    left: 70px;
+  }
+  .topbar{
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+   
+  }
+  .toggle{
+    position: relative;
+    top: 8px;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    font-size: 25px;
+    cursor: pointer;
+    /* color: v ar(--blue); */
+  }
+  /* Log out button CSS */
+  .logout_btn {
+    /* color: #fff; */
+    padding: 15px 25px;
+    border-radius: 100px;
+    background-color: var(--blue);
+    font-weight: bold;
+    font-size: 16px;
+    padding: 5px;
+    float: right;
+    margin-top: -2px;
+    margin-right: 20px;
+    font-weight: 600;
+    color: #fff;
+    transition: 0.5s;
+    border: 0;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    cursor: pointer;
+  }
+  
+      /* finished new */
+  .question-button{
+    text-align: center;
+    margin-top: 18px;
+    margin-bottom: 18px;
+    border-radius: 100px;
+    background-color: var(--blue);
+    font-weight: bold;
+    font-size: 16px;
+    margin-top: -2px;
+    margin-right: 20px;
+    margin-left: 20px;
+    font-weight: 600;
+    color: #fff;
+    transition: 0.5s;
+    border: 0;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    cursor: pointer;
+  }    
+  
+  .form-group label{
+    font-weight: bold;
+  }
+  
+  .content {
+    margin-left: 250px;
+    background: url(background.png) no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+    transition: 0.5s;
+  }
+  .content.active{
+    margin-left: 70px;
+  }
+  
+  .panel-primary{
+    border-color: #002a4e !important;
+  } 
+  .panel-primary>.panel-heading {
+    background-color: #002a4e !important;
+    border-color: #002a4e !important;
+  }

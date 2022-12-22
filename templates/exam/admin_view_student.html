@@ -1,0 +1,61 @@
+{% extends 'exam/adminbase.html' %}
+{% block content %}
+{%load static%}
+
+    <!--== BODY INNER CONTAINER ==-->
+    <div class="sb2-2">
+      <!--== breadcrumbs ==-->
+      <div class="sb2-2-2">
+          <ul>
+              <li><a href="{% url 'admin-dashboard' %}"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
+              </li>
+              <li class="active-bre"><a href="#"> Students Section / All Students</a>
+              </li>
+              <li class="page-back"><a href="{% url 'admin-dashboard' %}"><i class="fa fa-backward" aria-hidden="true"></i> Back</a>
+              </li>
+          </ul>
+      </div>
+  
+      <!--== User Details ==-->
+    <div class="sb2-2-3">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box-inn-sp">
+                    <div class="inn-title">
+                        <h4>Students Details</h4>
+                    </div>
+                    <div class="tab-inn">
+                        <div class="table-responsive table-desi">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                      <th>Name</th>
+                                      <th>Photo</th>
+                                      <th>Class</th>
+                                      <th>Email Address</th>
+                                      <th>Phone Number</th>
+                                      <th>UserName</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                  {% for t in students %}
+                                    <tr>
+  
+                                      <td> {{t.get_name}}</td>
+                                      <td> <img src="{% static t.profile_pic.url %}" alt="Profile Pic" height="40px" width="40px" /></td>
+                                      <td>{{t.class_id}}</td>
+                                      <td>{{t.get_email}}</td>
+                                      <td>{{t.phone_number}}</td>  
+                                      <td>{{t.user}}</td>                                            
+                                   </tr>
+                                  {% endfor %}                                            
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+{% endblock content %}

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+<head>
+ <style>
+html, body { height: 100%;
+ }
+
+.background {
+  background-image: url('{% static "image/bookslight2.jpg" %}');
+  background-size: cover;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+}
+  .jumbotron{
+    margin-bottom: 0px;
+  }
+  .container h2{
+    color: white;
+    font-weight: bold;
+  }
+  .container p{
+    color: rgb(255, 255, 255);
+  }
+
+  /* button style */
+  .btn1 a{
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+  }
+  .btn1 a:hover{
+    text-decoration: none;
+    font-size: 20px;
+    color:white;
+  }
+  .btn1{
+    background-color: var(--blue);
+    padding: 10px;
+    margin: auto 38%;
+    border-radius: 40px;
+   }
+  #ptag{
+    color: orangered;
+  }
+  
+  .navbar font{
+    display: none;
+  }
+  .container img{
+    height: 130px;
+    width: 130px;
+    color: white;
+    text-align: center;
+    border-radius: 50%;
+    margin-top: -15px;
+    
+  }
+  .back{
+    background-color: white;
+    max-width: 150px;
+    max-height: 150px;
+    opacity: 1;
+    /* max-width: 100px; */
+    text-align: center;
+  }
+
+</style>
+</head>
+<body>
+  {% include "exam/navbar.html" %}
+<br><br><br><br><br>
+<section id="section-jumbotron" >
+  <div class="container text-center">
+    <div class="back"></div><img src="{% static 'images/icon/logo1.jpg' %}"></img>
+    <h2 class="display-4">Neshaat-e-Elm</h2>
+    <h2 class="display-4"> Online Examination System</h2>
+    <p id='ptag' class="display-4" >Attend your examinations online!</p>
+    <p><strong> Start Your Journey Here:</strong></p>
+
+    <p class="lead" style="font-weight: bold;">Log In now to start your online examinations</p>
+    <div class="btn1">
+      <a href="/student/studentlogin"><i class="fa fa-graduation-cap" aria-hidden="true"></i> Log In as Student</a>
+    </div>
+    <br><br><br>
+  </div>  
+</section>
+
+<!-- for background animation -->
+  <script>
+    window.onload= function() {
+        Particles.init({
+	      selector: '.background',
+        color: 'white'
+      });
+    };
+  </script>
+  <canvas class="background"></canvas>
+  <script src="{% static 'scripts/particles.js-master/dist/particles.min.js' %}"></script>
+
+</body>
+
+</html>

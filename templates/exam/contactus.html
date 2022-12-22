@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+{% load widget_tweaks %}
+{% load static %}
+<html lang="en" dir="ltr">
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+ 
+  <style>
+    body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background-image: url("{% static 'images/clock.jpg' %}");
+    background-size: cover;
+}
+  .nav-home{
+    font-size: 20px;
+    font-weight: bold;
+    margin-right: 20px;
+    margin-top: 10px;
+    color: white;
+    float: right;
+    text-decoration: none;
+  }
+  .nav-home:hover{
+    font-size: 22px;
+    color: greenyellow;
+  }
+  
+  .contact-us{
+    font-size: 28px;
+    font-weight: bold;
+    margin-left: 40px;
+    margin-top: 20px;
+    color: white;
+
+  }
+
+  .container{
+    border: 1px dotted white;
+    border-radius: 20px;
+    margin-right: 50%;
+    margin-left: 30px;
+    margin-top: -20px;
+    padding: 10px;
+  }
+
+  .text{
+    color: yellowgreen;
+
+  }
+  .text span{
+    color: white;
+  }
+
+  .form-group input[type="text"],
+  .form-group input[type="email"]{
+    background: none;
+    display: block;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border: 1px solid white;
+    padding: 10px 10px;
+    width: 300px;
+    outline: none;
+    color: white;
+    font-size: 16px;
+    border-radius: 24px;
+}
+
+  .form-group textarea{
+    background: none;
+    display: block;
+    font-size: 16px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border: 1px solid white;
+    padding: 10px 10px;
+    height: 200px;
+    width: 600px;
+    max-width: 628px;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+
+  }
+  .form-group input[type="submit"] {
+    background: none;
+    display: block;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border: 2px solid #287bff;
+    padding: 8px 60px;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    transition: 0.25s;
+    cursor: pointer
+    } 
+
+  .form-group input[type="submit"]:hover{
+    color: white;
+    background-color: #287bff;
+  }
+  .form-group label{
+    color: white;
+  }
+
+</style>
+
+</head>
+
+<body>
+
+  <a href="/"><p class="nav-home"><i class="fa fa-home" aria-hidden="true"></i>home</p></a>
+  <br>
+
+  <p class="contact-us"><i class="fa fa-address-book" aria-hidden="true"></i> Contact Us</p>
+  <div class="container">
+  
+  <h3 class="text"><i class="fa fa-phone" aria-hidden="true"></i> Contact Via Phone:<span> 0770000000</span></h3><hr>
+  <h3 class="text"><i class="fa fa-envelope" aria-hidden="true"></i> Contact Via email:</h3>
+
+  <form method="POST" autocomplete="off">
+    <!-- Very Important csrf Token -->
+    {% csrf_token %}
+    <div>
+      <div class="form-group col-md-6">
+        <label for="name">Name: </label>
+        {% render_field form.Name class="form-control form-control-sm rounded-0" placeholder="Your Name" %}
+      </div>
+      <div class="form-group col-md-6">
+        <label for="email">Email: </label>
+        {% render_field form.Email class="form-control form-control-sm rounded-0" placeholder="Your Email" %}
+      </div>
+      <div class="form-group col-md-6">
+        <label for="message">Message: </label>
+        {% render_field form.Message class="form-control form-control-sm rounded-0" placeholder="Your Message" %}
+      </div>
+      <div class="form-group">
+        <input type="submit" value="Submit">
+      </div>    
+    </div>
+  </form>
+</div>
+</body>
+
+</html>

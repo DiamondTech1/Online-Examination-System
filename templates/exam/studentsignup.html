@@ -1,0 +1,278 @@
+{% extends 'exam/adminbase.html' %}
+{% load widget_tweaks %}
+{% block content %}
+
+
+<style>
+    .formerror{
+        color: red;
+    }
+</style>
+<!--== BODY INNER CONTAINER ==-->
+<div class="sb2-2">
+    <!--== breadcrumbs ==-->
+    <div class="sb2-2-2">
+        <ul>
+            <li><a href="{% url 'admin-dashboard' %}"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
+            </li>
+            <li class="active-bre"><a href="#">Students Section / Add new student</a>
+            </li>
+            <li class="page-back"><a href="{% url 'admin-dashboard' %}"><i class="fa fa-backward"
+                        aria-hidden="true"></i> Back</a>
+            </li>
+        </ul>
+    </div>
+
+    <!--== User Details ==-->
+
+    <div class="sb2-2-3">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box-inn-sp admin-form">
+                    <div class="inn-title">
+                        <h4>Add New Student Information</h4>
+                    </div>
+                    <div class="tab-inn">
+                        <form method="post" name="std_signup_form" id="stdSignup"
+                            enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="input-field col s6" id="name">
+                                    <label class="label"
+                                        style="margin-top:-20px; margin-left: -17px;"><span
+                                            class="formerror" id="fname_error"> </span></label>
+                                </div>
+
+                                <div class="input-field col s6">
+                                    <label class="label"
+                                        style="margin-top:-20px; margin-left: -17px;"><span
+                                            class="formerror" id="lname_error"> </span></label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s6">
+                                    {% render_field userForm.first_name|attr:'required:true' class="validate" %}
+                                    <label class=""><span style="color:rgb(219, 29, 29);">*</span>First name</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    {% render_field userForm.last_name|attr:'required:true' class="validate" %}
+                                    <label class=""><span style="color:rgb(219, 29, 29);">*</span>Last name</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s6" id="name">
+                                    <label class="label"
+                                        style="margin-top:-20px; margin-left: -17px;"><span
+                                            class="formerror" id="uname_error"> </span>{{ error }}</label>
+                                </div>
+
+                                <div class="input-field col s6">
+                                    <label class="label"
+                                        style="margin-top:-20px; margin-left: -17px;"><span
+                                            class="formerror" id="password_error"> </span></label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s6">
+                                    {% render_field userForm.username|attr:'required:true' class="validate" %}
+                                    <label class=""><span style="color:rgb(219, 29, 29);">*</span>Username</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    {% render_field userForm.password|attr:'required:true' class="validate" %}
+                                    <label class=""><span style="color:rgb(219, 29, 29);">*</span>Password</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s6" id="name">
+                                    <label class="label"
+                                        style="margin-top:-20px; margin-left: -17px;"><span
+                                            class="formerror" id="class_error"> </span></label>
+                                </div>
+
+                                <div class="input-field col s6">
+                                    <label class="label"
+                                        style="margin-top:-20px; margin-left: -17px;"><span
+                                            class="formerror" id="phone_error"> </span></label>
+                                </div>
+                            </div>
+                          
+                            <div class="row">
+                                <div class="input-field col s6">
+                                    {% render_field studentForm.classID|attr:'required:false' class="" %}
+                                    <!-- <label class="">Department</label> -->
+                                </div>
+                                <div class="input-field col s6">
+                                    {% render_field studentForm.phone_number|attr:'required:true' class="validate" %}
+                                    <label class=""><span style="color:rgb(219, 29, 29);">*</span>Phone number</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s6" id="name">
+                                    <label class="label"
+                                        style="margin-top:-20px; margin-left: -17px;"><span
+                                            class="formerror" id="email_error"> </span></label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    {% render_field userForm.email|attr:'required:true' class="validate" %}
+                                    <label class="">Email is</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <!-- <input type="text" value="" class="validate">
+                              <label>Student id</label> -->
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="file-field input-field col s12">
+                                    <div class="btn admin-upload-btn">
+                                        <span>File</span>
+                                        <input type="file">
+                                    </div>
+                                    <div class="file-path-wrapper">
+                                        <input class="file-path validate" type="text" placeholder="Profile image">
+                                        {% render_field studentForm.profile_pic|attr:'required:true' class="validate" %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <i class="waves-effect waves-light btn-large waves-input-wrapper"><input
+                                            type="submit" class="waves-button-input"></i>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+    <script>
+        const form = document.getElementById('stdSignup')
+        const firstName = document.getElementById('id_first_name')
+        const lastName = document.getElementById('id_last_name')
+        const userName = document.getElementById('id_username') 
+        const password = document.getElementById('id_password')
+        const phone = document.getElementById('id_phone_number')
+        const email = document.getElementById('id_email')
+
+
+        const fnameError = document.getElementById('fname_error')
+        const lnameError = document.getElementById('lname_error')
+        const unameError = document.getElementById('uname_error')
+        const passwordError = document.getElementById('password_error')
+        const phoneError = document.getElementById('phone_error')
+        const emailError = document.getElementById('email_error')
+
+        var text = /^[a-zA-Z][\w\s]*$/;
+        var text1 = /^[a-zA-Z0-9]*$/;
+        var num = /^0[74][0-9]*$/;
+
+        var emreg = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+
+
+        form.addEventListener('submit', (e) => {
+            clearErrors()
+            var returnval = validateInputs();
+            if (returnval){
+                e.preventDefault()
+            }
+
+
+
+        })
+
+        const validateInputs = () => {
+            var rety = false;
+            if (!firstName.value.match(text)){
+                fnameError.innerText = "First Name must contains only letters";
+                rety = true;
+            }
+
+            if (!lastName.value.match(text)){
+                lnameError.innerText = "Last Name must contains only letters";
+                rety = true;
+            }
+
+            if (!userName.value.match(text1)){
+                unameError.innerText = "User Name must contains only letters and numbers";
+                rety = true;
+            }
+
+            if (password.value.length < 6 || password.value.match(text)) {
+                passwordError.innerText = "Password must be at least 6 chars of letters and numbers (symbols)";
+                rety = true;
+            }
+
+
+            if (phone.value.length < 10 || !phone.value.match(num)){
+                phoneError.innerText = "phone number must be 10 characters of digits";
+                rety = true;
+            }
+
+
+            if(!email.value.match(emreg)){
+                emailError.innerText = "Please enter a valid email";
+                rety = true;
+            }
+
+            return rety; 
+
+        };
+
+        function clearErrors(){
+            fnameError.innerText = "";
+            lnameError.innerText = "";
+            unameError.innerText = "";
+            passwordError.innerText = "";
+            phoneError.innerText = "";
+            emailError.innerText = "";
+        }
+
+  
+        //     // if(passwordValue === '') {
+        //     //     setError(password, 'Password is required');
+        //     // } else if (passwordValue.length < 8 ) {
+        //     //     setError(password, 'Password must be at least 8 character.')
+        //     // } else {
+        //     //     setSuccess(password);
+        //     // }
+
+        //     // if(password2Value === '') {
+        //     //     setError(password2, 'Please confirm your password');
+        //     // } else if (password2Value !== passwordValue) {
+        //     //     setError(password2, "Passwords doesn't match");
+        //     // } else {
+        //     //     setSuccess(password2);
+        //     // }
+
+        // };
+
+    //static/js/script.js
+    $(document).ready(function(){
+        $("#id_username").change(function () {
+        var id_username = $(this).val();
+    
+        $.ajax({
+            url: '/validate_username/',
+            data: {
+            'id_username': id_username
+            },
+            dataType: 'json',
+            success: function (data) {
+            if (data.is_taken) {
+                alert("A user with this username already exists.");
+            }
+            }
+        });
+    
+        });
+    });
+
+
+    </script>
+    {% endblock %}

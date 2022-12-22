@@ -1,0 +1,233 @@
+{% extends 'exam/adminbase.html' %}
+{% load widget_tweaks %}
+{% block content %}
+
+<style>
+    .formerror{
+        color: red;
+    }
+</style>
+<!--== BODY INNER CONTAINER ==-->
+<div class="sb2-2">
+  <!--== breadcrumbs ==-->
+  <div class="sb2-2-2">
+      <ul>
+          <li><a href="{% url 'admin-dashboard' %}"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
+          </li>
+          <li class="active-bre"><a href="#"> Teachers Section / Add new Teacher</a>
+          </li>
+          <li class="page-back"><a href="{% url 'admin-dashboard' %}"><i class="fa fa-backward" aria-hidden="true"></i> Back</a>
+          </li>
+      </ul>
+  </div>
+
+  <!--== User Details ==-->
+
+<div class="sb2-2-3">
+  <div class="row">
+      <div class="col-md-12">
+          <div class="box-inn-sp admin-form">
+              <div class="inn-title">
+                  <h4>Add New Teacher Informations</h4>
+              </div>
+              <div class="tab-inn">
+                  <form method="post"  autocomplete="off" enctype="multipart/form-data" id="thsignup">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="input-field col s6" id="name">
+                            <label class="label"
+                                style="margin-top:-20px; margin-left: -17px;"><span
+                                    class="formerror" id="fname_error"> </span></label>
+                        </div>
+
+                        <div class="input-field col s6">
+                            <label class="label"
+                                style="margin-top:-20px; margin-left: -17px;"><span
+                                    class="formerror" id="lname_error"> </span></label>
+                        </div>
+                    </div>
+                      <div class="row">
+                          <div class="input-field col s6">
+                              {% render_field userForm.first_name|attr:'required:true' class="validate" %}
+                              <label class=""><span style="color:rgb(219, 29, 29);">*</span>First name</label>
+                          </div>
+                          <div class="input-field col s6">
+                              {% render_field userForm.last_name|attr:'required:true' class="validate" %}
+                              <label class=""><span style="color:rgb(219, 29, 29);">*</span>Last name</label>
+                          </div>
+                      </div>
+                      <div class="row">
+                        <div class="input-field col s6" id="name">
+                            <label class="label"
+                                style="margin-top:-20px; margin-left: -17px;"><span
+                                    class="formerror" id="uname_error">{{form.errors}} {{error}}</span></label>
+                        </div>
+
+                        <div class="input-field col s6">
+                            <label class="label"
+                                style="margin-top:-20px; margin-left: -17px;"><span
+                                    class="formerror" id="password_error"> </span></label>
+                        </div>
+                    </div>
+                      <div class="row">
+                        <div class="input-field col s6">
+                              {% render_field userForm.username|attr:'required:true'  class="validate" %}
+                              <label class=""><span style="color:rgb(219, 29, 29);">*</span>Username</label>
+                        </div>
+                        <div class="input-field col s6">
+                              {% render_field userForm.password|attr:'required:true'  class="validate" %}
+                              <label class=""><span style="color:rgb(219, 29, 29);">*</span>Password</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6" id="name">
+                            <label class="label"
+                                style="margin-top:-20px; margin-left: -17px;"><span
+                                    class="formerror" id="class_error"> </span></label>
+                        </div>
+
+                        <div class="input-field col s6">
+                            <label class="label"
+                                style="margin-top:-20px; margin-left: -17px;"><span
+                                    class="formerror" id="phone_error"> </span></label>
+                        </div>
+                    </div>
+                  
+                      <div class="row">
+                          <div class="input-field col s6">
+                              {% render_field teacherForm.subjectID|attr:'required:true'  class="validate" %}
+                              <!-- <label class="">Department</label> -->
+                              
+                          </div>
+                          <div class="input-field col s6">
+                              {% render_field teacherForm.phone_number|attr:'required:true'  class="validate" %}
+                              <label class=""><span style="color:rgb(219, 29, 29);">*</span>Phone Number</label>
+                          </div>
+                      </div>
+                      <div class="row">
+                        <div class="row">
+                            <div class="input-field col s12" id="name">
+                                <label class="label"
+                                    style="margin-top:-20px; margin-left: -17px;"><span
+                                        class="formerror" id="email_error"> </span></label>
+                            </div>
+                        </div>
+                          <div class="input-field col s12">
+                              {% render_field userForm.email|attr:'required:true' class="validate" %}
+                              <label class="">Email is</label>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="input-field col s12">
+                              <!-- <input type="text" value="" class="validate">
+                              <label>Student id</label> -->
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="file-field input-field col s12">
+                            <div class="btn admin-upload-btn">
+                              <span>File</span>
+                              <input type="file">
+                            </div>
+                          <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text" placeholder="Profile image">
+                            {% render_field teacherForm.profile_pic|attr:'required:true' class="validate" %}
+                          </div>
+                        </div>
+                      </div> 
+                      <div class="row">
+                          <div class="input-field col s12">
+                              <i class="waves-effect waves-light btn-large waves-input-wrapper"><input type="submit" class="waves-button-input"></i>
+                          </div>
+                      </div>
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+
+<script>
+    const form = document.getElementById('thsignup')
+    const firstName = document.getElementById('id_first_name')
+    const lastName = document.getElementById('id_last_name')
+    const userName = document.getElementById('id_username') 
+    const password = document.getElementById('id_password')
+    const phone = document.getElementById('id_phone_number')
+    const email = document.getElementById('id_email')
+
+    const fnameError = document.getElementById('fname_error')
+    const lnameError = document.getElementById('lname_error')
+    const unameError = document.getElementById('uname_error')
+    const passwordError = document.getElementById('password_error')
+    const phoneError = document.getElementById('phone_error')
+    const emailError = document.getElementById('email_error')
+
+    var text = /^[a-zA-Z][\w\s]*$/;
+    var text1 = /^[a-zA-Z0-9]*$/;
+    var num = /^0[74][0-9]*$/;
+
+    var emreg = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+
+
+    form.addEventListener('submit', (e) => {
+        clearErrors()
+        var returnval = validateInputs();
+        if (returnval){
+            e.preventDefault()
+        }
+
+
+
+    })
+
+    const validateInputs = () => {
+        var rety = false;
+        if (!firstName.value.match(text)){
+            fnameError.innerText = "First Name must contains only letters";
+            rety = true;
+        }
+
+        if (!lastName.value.match(text)){
+            lnameError.innerText = "Last Name must contains only letters";
+            rety = true;
+        }
+
+        if (!userName.value.match(text1)){
+            unameError.innerText = "User Name must contains only letters and numbers";
+            rety = true;
+        }
+
+        if (password.value.length < 6 || password.value.match(text)) {
+            passwordError.innerText = "Password must be at least 6 chars of letters and numbers (symbols)";
+            rety = true;
+        }
+
+
+        if (phone.value.length < 10 || !phone.value.match(num)){
+            phoneError.innerText = "Please enter a valid phone number";
+            rety = true;
+        }
+
+
+        if(!email.value.match(emreg)){
+            emailError.innerText = "Please enter a valid email";
+            rety = true;
+        }
+
+        return rety; 
+
+    };
+
+    function clearErrors(){
+        fnameError.innerText = "";
+        lnameError.innerText = "";
+        unameError.innerText = "";
+        passwordError.innerText = "";
+        phoneError.innerText = "";
+        emailError.innerText = "";
+    }
+</script>
+{% endblock %}

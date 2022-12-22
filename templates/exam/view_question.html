@@ -1,0 +1,82 @@
+{% extends 'exam/adminbase.html' %}
+{% block content %}
+{%load static%}
+
+    <!--== BODY INNER CONTAINER ==-->
+    <div class="sb2-2">
+      <!--== breadcrumbs ==-->
+      <div class="sb2-2-2">
+          <ul>
+              <li><a href="{% url 'admin-dashboard' %}"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
+              </li>
+              <li class="active-bre"><a href="#"> Exams Section / All Exams / View Questions</a>
+              </li>
+              <li class="page-back"><a href="{% url 'admin-view-exam' %}"><i class="fa fa-backward" aria-hidden="true"></i> Back</a>
+              </li>
+          </ul>
+      </div>
+  
+      <!--== User Details ==-->
+      <div class="sb2-2-3">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box-inn-sp">
+                    <div class="inn-title">
+                        <h4>See Questions</h4>
+                    </div>
+                    <div class="tab-inn">
+                        <div class="table-responsive table-desi">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                      <th>Question</th>
+                                      <th>Marks</th>
+                                      <th style="text-align: center;">Remove</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                  {% for c in mcq %}
+                                    <tr>
+                                      <td>{{c.question|linebreaks}}</td>
+                                      <td>{{c.marks}}</td>
+                                      <td class="text-center"><a class="btn btn-danger" style="border-radius: 10%;" href="{% url 'remove-mcq-question' c.id  %}"><span class="fa fa-trash" style="color: white; font-size: 18px;"></span></a></td>
+                                    </tr>
+                                  {% endfor %}
+                                  {% for c in tfq %}
+                                  <tr>
+
+                                    <td> {{c.question|linebreaks}}</td>
+                                    <td>{{c.marks}}</td>
+                                    <td class="text-center"><a class="btn btn-danger" style="border-radius: 10%;" href="{% url 'remove-tfq-question' c.id  %}"><span class="fa fa-trash" style="color: white; font-size: 18px;"></span></a></td>
+                                  </tr>
+                                {% endfor %}
+                                {% for c in gfq %}
+                                <tr>
+
+                                  <td> {{c.question_part1}} ........... {{c.question_part2}}</td>
+                                  <td>{{c.marks}}</td>
+                                  <td class="text-center"><a class="btn btn-danger" style="border-radius: 10%;" href="{% url 'remove-gfq-question' c.id  %}"><span class="fa fa-trash" style="color: white; font-size: 18px;"></span></a></td>
+                                </tr>
+                              {% endfor %}                                            
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+{% endblock content %}
+
+
+
+
+
+
+
+
+
+
+
+
